@@ -14,10 +14,6 @@ const ListingComponent = () => {
   const [formState, setFormState] = useState(initialState);
   const [todos, setTodos] = useState([]);
 
-  //   useEffect(() => {
-  //     fetchTodos();
-  //   }, []);
-
   const checkUser = async () => {
     try {
       const user = await Auth.currentAuthenticatedUser();
