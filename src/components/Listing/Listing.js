@@ -4,8 +4,8 @@ import { createTodo } from "../../graphql/mutations";
 import { listTodos } from "../../graphql/queries";
 import { useNavigate } from "react-router-dom";
 
-// import awsExports from "./aws-exports";
-// Amplify.configure(awsExports);
+import updatedAwsConfig from "../../aws-exports-custom";
+Amplify.configure(updatedAwsConfig);
 
 const initialState = { task: "" };
 
@@ -58,9 +58,14 @@ const ListingComponent = () => {
       console.log("error creating todo:", err);
     }
   }
-  const onLogoutClick = () => {
+  const  onLogoutClick = async () => {
     localStorage.clear();
-    navigate("/login");
+    // await Auth.signOut();
+    let {aws_cognito_region : region, aws_user_pools_web_client_id: client_id, oauth: {providerDomain: domain, redirectSignOut}}  = updatedAwsConfig;
+    let uri = `https://${domain}.auth.${region}.amazoncognito.com/logout?client_id=${client_id}&logout_uri=${redirectSignOut}`;
+    // let uri = `https://okta-test-int-dev.auth.us-east-1.amazoncognito.com/logout?client_id=s4jtqkr9ek227aagl5qibpub9&logout_uri=http%3A%2F%2Flocalhost%3A3001%2Flogin`
+    window.location.assign(uri);
+
   };
   return (
     <div className="main-task-div" style={styles.wrapper}>

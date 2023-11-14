@@ -100,5 +100,6 @@ function override(resources) {
             }
         },
     }, "IdentityPoolRoleMap");
+    resources.userPoolClientWeb.supportedIdentityProviders = ["DEV-OKTA-AD"];
 }
 exports.override = override;

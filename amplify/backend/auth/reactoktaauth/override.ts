@@ -25,7 +25,7 @@ export function override(resources: AmplifyAuthCognitoStackTemplate) {
             },
         },
     }, 'UserPoolDomain');
-
+    
     resources.userPoolClientWeb.allowedOAuthFlows = [
         "code",
         "implicit"
@@ -111,4 +111,5 @@ export function override(resources: AmplifyAuthCognitoStackTemplate) {
         },
         "IdentityPoolRoleMap"
       );
+      resources.userPoolClientWeb.supportedIdentityProviders = [ "DEV-OKTA-AD" ] 
 }

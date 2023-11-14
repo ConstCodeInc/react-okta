@@ -320,6 +320,9 @@
         "RefreshTokenValidity": {
           "Ref": "userpoolClientRefreshTokenValidity"
         },
+        "SupportedIdentityProviders": [
+          "DEV-OKTA-AD"
+        ],
         "TokenValidityUnits": {
           "RefreshToken": "days"
         }
