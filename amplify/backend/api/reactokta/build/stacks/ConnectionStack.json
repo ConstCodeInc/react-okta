@@ -1,0 +1,775 @@
+{
+  "Resources": {
+    "Artisttalentgenreauth0FunctionArtisttalentgenreauth0FunctionAppSyncFunctionDFB4446E": {
+      "Type": "AWS::AppSync::FunctionConfiguration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "DataSourceName": {
+          "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
+        },
+        "FunctionVersion": "2018-05-29",
+        "Name": "Artisttalent_genreauth0Function",
+        "RequestMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/Artist.talent_genre.auth.1.req.vtl"
+            ]
+          ]
+        },
+        "ResponseMappingTemplate": "$util.toJson({})"
+      }
+    },
+    "ArtistTalentgenreDataResolverFnArtistTalentgenreDataResolverFnAppSyncFunction7B52C200": {
+      "Type": "AWS::AppSync::FunctionConfiguration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "DataSourceName": {
+          "Ref": "referencetotransformerrootstackArtistGenreNestedStackArtistGenreNestedStackResourceA86FBC28OutputstransformerrootstackArtistGenreArtistGenreDataSourceBB44D74CName"
+        },
+        "FunctionVersion": "2018-05-29",
+        "Name": "ArtistTalent_genreDataResolverFn",
+        "RequestMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/Artist.talent_genre.req.vtl"
+            ]
+          ]
+        },
+        "ResponseMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/Artist.talent_genre.res.vtl"
+            ]
+          ]
+        }
+      }
+    },
+    "Artisttalentgenref3c3Resolver": {
+      "Type": "AWS::AppSync::Resolver",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "FieldName": "talent_genre",
+        "TypeName": "Artist",
+        "Kind": "PIPELINE",
+        "PipelineConfig": {
+          "Functions": [
+            {
+              "Fn::GetAtt": [
+                "Artisttalentgenreauth0FunctionArtisttalentgenreauth0FunctionAppSyncFunctionDFB4446E",
+                "FunctionId"
+              ]
+            },
+            {
+              "Fn::GetAtt": [
+                "ArtistTalentgenreDataResolverFnArtistTalentgenreDataResolverFnAppSyncFunction7B52C200",
+                "FunctionId"
+              ]
+            }
+          ]
+        },
+        "RequestMappingTemplate": {
+          "Fn::Join": [
+            "",
+            [
+              "$util.qr($ctx.stash.put(\"typeName\", \"Artist\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"talent_genre\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              {
+                "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+              },
+              "\"))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+              {
+                "Ref": "referencetotransformerrootstackArtistGenreNestedStackArtistGenreNestedStackResourceA86FBC28OutputstransformerrootstackArtistGenreArtistGenreTable0DA38D17Ref"
+              },
+              "\"))\n$util.toJson({})"
+            ]
+          ]
+        },
+        "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
+      }
+    },
+    "ArtistTalentlabelDataResolverFnArtistTalentlabelDataResolverFnAppSyncFunction4C28A5BC": {
+      "Type": "AWS::AppSync::FunctionConfiguration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "DataSourceName": {
+          "Ref": "referencetotransformerrootstackArtistLabelNestedStackArtistLabelNestedStackResource76460DA9OutputstransformerrootstackArtistLabelArtistLabelDataSourceF3DD2F24Name"
+        },
+        "FunctionVersion": "2018-05-29",
+        "Name": "ArtistTalent_labelDataResolverFn",
+        "RequestMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/Artist.talent_label.req.vtl"
+            ]
+          ]
+        },
+        "ResponseMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/Artist.talent_label.res.vtl"
+            ]
+          ]
+        }
+      }
+    },
+    "Artisttalentlabelb3aeResolver": {
+      "Type": "AWS::AppSync::Resolver",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "FieldName": "talent_label",
+        "TypeName": "Artist",
+        "Kind": "PIPELINE",
+        "PipelineConfig": {
+          "Functions": [
+            {
+              "Fn::GetAtt": [
+                "Artisttalentgenreauth0FunctionArtisttalentgenreauth0FunctionAppSyncFunctionDFB4446E",
+                "FunctionId"
+              ]
+            },
+            {
+              "Fn::GetAtt": [
+                "ArtistTalentlabelDataResolverFnArtistTalentlabelDataResolverFnAppSyncFunction4C28A5BC",
+                "FunctionId"
+              ]
+            }
+          ]
+        },
+        "RequestMappingTemplate": {
+          "Fn::Join": [
+            "",
+            [
+              "$util.qr($ctx.stash.put(\"typeName\", \"Artist\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"talent_label\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              {
+                "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+              },
+              "\"))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+              {
+                "Ref": "referencetotransformerrootstackArtistLabelNestedStackArtistLabelNestedStackResource76460DA9OutputstransformerrootstackArtistLabelArtistLabelTable53EB95BDRef"
+              },
+              "\"))\n$util.toJson({})"
+            ]
+          ]
+        },
+        "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
+      }
+    },
+    "GenreTalentgenreDataResolverFnGenreTalentgenreDataResolverFnAppSyncFunction9B369EC5": {
+      "Type": "AWS::AppSync::FunctionConfiguration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "DataSourceName": {
+          "Ref": "referencetotransformerrootstackArtistGenreNestedStackArtistGenreNestedStackResourceA86FBC28OutputstransformerrootstackArtistGenreArtistGenreDataSourceBB44D74CName"
+        },
+        "FunctionVersion": "2018-05-29",
+        "Name": "GenreTalent_genreDataResolverFn",
+        "RequestMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/Genre.talent_genre.req.vtl"
+            ]
+          ]
+        },
+        "ResponseMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/Genre.talent_genre.res.vtl"
+            ]
+          ]
+        }
+      }
+    },
+    "Genretalentgenre6e0dResolver": {
+      "Type": "AWS::AppSync::Resolver",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "FieldName": "talent_genre",
+        "TypeName": "Genre",
+        "Kind": "PIPELINE",
+        "PipelineConfig": {
+          "Functions": [
+            {
+              "Fn::GetAtt": [
+                "Artisttalentgenreauth0FunctionArtisttalentgenreauth0FunctionAppSyncFunctionDFB4446E",
+                "FunctionId"
+              ]
+            },
+            {
+              "Fn::GetAtt": [
+                "GenreTalentgenreDataResolverFnGenreTalentgenreDataResolverFnAppSyncFunction9B369EC5",
+                "FunctionId"
+              ]
+            }
+          ]
+        },
+        "RequestMappingTemplate": {
+          "Fn::Join": [
+            "",
+            [
+              "$util.qr($ctx.stash.put(\"typeName\", \"Genre\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"talent_genre\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              {
+                "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+              },
+              "\"))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+              {
+                "Ref": "referencetotransformerrootstackArtistGenreNestedStackArtistGenreNestedStackResourceA86FBC28OutputstransformerrootstackArtistGenreArtistGenreTable0DA38D17Ref"
+              },
+              "\"))\n$util.toJson({})"
+            ]
+          ]
+        },
+        "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
+      }
+    },
+    "LabelTalentlabelDataResolverFnLabelTalentlabelDataResolverFnAppSyncFunction71B3C4F3": {
+      "Type": "AWS::AppSync::FunctionConfiguration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "DataSourceName": {
+          "Ref": "referencetotransformerrootstackArtistLabelNestedStackArtistLabelNestedStackResource76460DA9OutputstransformerrootstackArtistLabelArtistLabelDataSourceF3DD2F24Name"
+        },
+        "FunctionVersion": "2018-05-29",
+        "Name": "LabelTalent_labelDataResolverFn",
+        "RequestMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/Label.talent_label.req.vtl"
+            ]
+          ]
+        },
+        "ResponseMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/Label.talent_label.res.vtl"
+            ]
+          ]
+        }
+      }
+    },
+    "Labeltalentlabel946bResolver": {
+      "Type": "AWS::AppSync::Resolver",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "FieldName": "talent_label",
+        "TypeName": "Label",
+        "Kind": "PIPELINE",
+        "PipelineConfig": {
+          "Functions": [
+            {
+              "Fn::GetAtt": [
+                "Artisttalentgenreauth0FunctionArtisttalentgenreauth0FunctionAppSyncFunctionDFB4446E",
+                "FunctionId"
+              ]
+            },
+            {
+              "Fn::GetAtt": [
+                "LabelTalentlabelDataResolverFnLabelTalentlabelDataResolverFnAppSyncFunction71B3C4F3",
+                "FunctionId"
+              ]
+            }
+          ]
+        },
+        "RequestMappingTemplate": {
+          "Fn::Join": [
+            "",
+            [
+              "$util.qr($ctx.stash.put(\"typeName\", \"Label\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"talent_label\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              {
+                "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+              },
+              "\"))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+              {
+                "Ref": "referencetotransformerrootstackArtistLabelNestedStackArtistLabelNestedStackResource76460DA9OutputstransformerrootstackArtistLabelArtistLabelTable53EB95BDRef"
+              },
+              "\"))\n$util.toJson({})"
+            ]
+          ]
+        },
+        "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
+      }
+    },
+    "ArtistGenreTalentDataResolverFnArtistGenreTalentDataResolverFnAppSyncFunction97563AEA": {
+      "Type": "AWS::AppSync::FunctionConfiguration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "DataSourceName": {
+          "Ref": "referencetotransformerrootstackArtistNestedStackArtistNestedStackResource1CEC2AE5OutputstransformerrootstackArtistArtistDataSource3E25DAB7Name"
+        },
+        "FunctionVersion": "2018-05-29",
+        "Name": "ArtistGenreTalentDataResolverFn",
+        "RequestMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/ArtistGenre.talent.req.vtl"
+            ]
+          ]
+        },
+        "ResponseMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/ArtistGenre.talent.res.vtl"
+            ]
+          ]
+        }
+      }
+    },
+    "ArtistGenretalentResolver": {
+      "Type": "AWS::AppSync::Resolver",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "FieldName": "talent",
+        "TypeName": "ArtistGenre",
+        "Kind": "PIPELINE",
+        "PipelineConfig": {
+          "Functions": [
+            {
+              "Fn::GetAtt": [
+                "Artisttalentgenreauth0FunctionArtisttalentgenreauth0FunctionAppSyncFunctionDFB4446E",
+                "FunctionId"
+              ]
+            },
+            {
+              "Fn::GetAtt": [
+                "ArtistGenreTalentDataResolverFnArtistGenreTalentDataResolverFnAppSyncFunction97563AEA",
+                "FunctionId"
+              ]
+            }
+          ]
+        },
+        "RequestMappingTemplate": {
+          "Fn::Join": [
+            "",
+            [
+              "$util.qr($ctx.stash.put(\"typeName\", \"ArtistGenre\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"talent\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              {
+                "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+              },
+              "\"))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+              {
+                "Ref": "referencetotransformerrootstackArtistNestedStackArtistNestedStackResource1CEC2AE5OutputstransformerrootstackArtistArtistTable95388FFFRef"
+              },
+              "\"))\n$util.toJson({})"
+            ]
+          ]
+        },
+        "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
+      }
+    },
+    "ArtistGenregenreauth0FunctionArtistGenregenreauth0FunctionAppSyncFunctionE5137CD0": {
+      "Type": "AWS::AppSync::FunctionConfiguration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "DataSourceName": {
+          "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
+        },
+        "FunctionVersion": "2018-05-29",
+        "Name": "ArtistGenregenreauth0Function",
+        "RequestMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/ArtistGenre.genre.auth.1.req.vtl"
+            ]
+          ]
+        },
+        "ResponseMappingTemplate": "$util.toJson({})"
+      }
+    },
+    "ArtistGenreGenreDataResolverFnArtistGenreGenreDataResolverFnAppSyncFunctionD9AE3654": {
+      "Type": "AWS::AppSync::FunctionConfiguration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "DataSourceName": {
+          "Ref": "referencetotransformerrootstackGenreNestedStackGenreNestedStackResource2B91CA7DOutputstransformerrootstackGenreGenreDataSourceD77E4DBAName"
+        },
+        "FunctionVersion": "2018-05-29",
+        "Name": "ArtistGenreGenreDataResolverFn",
+        "RequestMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/ArtistGenre.genre.req.vtl"
+            ]
+          ]
+        },
+        "ResponseMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/ArtistGenre.genre.res.vtl"
+            ]
+          ]
+        }
+      }
+    },
+    "ArtistGenregenreResolver": {
+      "Type": "AWS::AppSync::Resolver",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "FieldName": "genre",
+        "TypeName": "ArtistGenre",
+        "Kind": "PIPELINE",
+        "PipelineConfig": {
+          "Functions": [
+            {
+              "Fn::GetAtt": [
+                "ArtistGenregenreauth0FunctionArtistGenregenreauth0FunctionAppSyncFunctionE5137CD0",
+                "FunctionId"
+              ]
+            },
+            {
+              "Fn::GetAtt": [
+                "ArtistGenreGenreDataResolverFnArtistGenreGenreDataResolverFnAppSyncFunctionD9AE3654",
+                "FunctionId"
+              ]
+            }
+          ]
+        },
+        "RequestMappingTemplate": {
+          "Fn::Join": [
+            "",
+            [
+              "$util.qr($ctx.stash.put(\"typeName\", \"ArtistGenre\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"genre\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              {
+                "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+              },
+              "\"))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+              {
+                "Ref": "referencetotransformerrootstackGenreNestedStackGenreNestedStackResource2B91CA7DOutputstransformerrootstackGenreGenreTable6616CDA8Ref"
+              },
+              "\"))\n$util.toJson({})"
+            ]
+          ]
+        },
+        "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
+      }
+    },
+    "ArtistLabeltalentResolver": {
+      "Type": "AWS::AppSync::Resolver",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "FieldName": "talent",
+        "TypeName": "ArtistLabel",
+        "Kind": "PIPELINE",
+        "PipelineConfig": {
+          "Functions": [
+            {
+              "Fn::GetAtt": [
+                "Artisttalentgenreauth0FunctionArtisttalentgenreauth0FunctionAppSyncFunctionDFB4446E",
+                "FunctionId"
+              ]
+            },
+            {
+              "Fn::GetAtt": [
+                "ArtistGenreTalentDataResolverFnArtistGenreTalentDataResolverFnAppSyncFunction97563AEA",
+                "FunctionId"
+              ]
+            }
+          ]
+        },
+        "RequestMappingTemplate": {
+          "Fn::Join": [
+            "",
+            [
+              "$util.qr($ctx.stash.put(\"typeName\", \"ArtistLabel\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"talent\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              {
+                "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+              },
+              "\"))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+              {
+                "Ref": "referencetotransformerrootstackArtistNestedStackArtistNestedStackResource1CEC2AE5OutputstransformerrootstackArtistArtistTable95388FFFRef"
+              },
+              "\"))\n$util.toJson({})"
+            ]
+          ]
+        },
+        "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
+      }
+    },
+    "ArtistLabelLabelDataResolverFnArtistLabelLabelDataResolverFnAppSyncFunction27FBCC5B": {
+      "Type": "AWS::AppSync::FunctionConfiguration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "DataSourceName": {
+          "Ref": "referencetotransformerrootstackLabelNestedStackLabelNestedStackResourceB15DD540OutputstransformerrootstackLabelLabelDataSource6CBB468DName"
+        },
+        "FunctionVersion": "2018-05-29",
+        "Name": "ArtistLabelLabelDataResolverFn",
+        "RequestMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/ArtistLabel.label.req.vtl"
+            ]
+          ]
+        },
+        "ResponseMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/ArtistLabel.label.res.vtl"
+            ]
+          ]
+        }
+      }
+    },
+    "ArtistLabellabelResolver": {
+      "Type": "AWS::AppSync::Resolver",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "FieldName": "label",
+        "TypeName": "ArtistLabel",
+        "Kind": "PIPELINE",
+        "PipelineConfig": {
+          "Functions": [
+            {
+              "Fn::GetAtt": [
+                "Artisttalentgenreauth0FunctionArtisttalentgenreauth0FunctionAppSyncFunctionDFB4446E",
+                "FunctionId"
+              ]
+            },
+            {
+              "Fn::GetAtt": [
+                "ArtistLabelLabelDataResolverFnArtistLabelLabelDataResolverFnAppSyncFunction27FBCC5B",
+                "FunctionId"
+              ]
+            }
+          ]
+        },
+        "RequestMappingTemplate": {
+          "Fn::Join": [
+            "",
+            [
+              "$util.qr($ctx.stash.put(\"typeName\", \"ArtistLabel\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"label\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              {
+                "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+              },
+              "\"))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+              {
+                "Ref": "referencetotransformerrootstackLabelNestedStackLabelNestedStackResourceB15DD540OutputstransformerrootstackLabelLabelTable164E01F7Ref"
+              },
+              "\"))\n$util.toJson({})"
+            ]
+          ]
+        },
+        "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
+      }
+    }
+  },
+  "Parameters": {
+    "referencetotransformerrootstackGraphQLAPI20497F53ApiId": {
+      "Type": "String"
+    },
+    "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name": {
+      "Type": "String"
+    },
+    "referencetotransformerrootstackS3DeploymentBucket7592718ARef": {
+      "Type": "String"
+    },
+    "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref": {
+      "Type": "String"
+    },
+    "referencetotransformerrootstackArtistGenreNestedStackArtistGenreNestedStackResourceA86FBC28OutputstransformerrootstackArtistGenreArtistGenreDataSourceBB44D74CName": {
+      "Type": "String"
+    },
+    "referencetotransformerrootstackArtistGenreNestedStackArtistGenreNestedStackResourceA86FBC28OutputstransformerrootstackArtistGenreArtistGenreTable0DA38D17Ref": {
+      "Type": "String"
+    },
+    "referencetotransformerrootstackArtistLabelNestedStackArtistLabelNestedStackResource76460DA9OutputstransformerrootstackArtistLabelArtistLabelDataSourceF3DD2F24Name": {
+      "Type": "String"
+    },
+    "referencetotransformerrootstackArtistLabelNestedStackArtistLabelNestedStackResource76460DA9OutputstransformerrootstackArtistLabelArtistLabelTable53EB95BDRef": {
+      "Type": "String"
+    },
+    "referencetotransformerrootstackArtistNestedStackArtistNestedStackResource1CEC2AE5OutputstransformerrootstackArtistArtistDataSource3E25DAB7Name": {
+      "Type": "String"
+    },
+    "referencetotransformerrootstackArtistNestedStackArtistNestedStackResource1CEC2AE5OutputstransformerrootstackArtistArtistTable95388FFFRef": {
+      "Type": "String"
+    },
+    "referencetotransformerrootstackGenreNestedStackGenreNestedStackResource2B91CA7DOutputstransformerrootstackGenreGenreDataSourceD77E4DBAName": {
+      "Type": "String"
+    },
+    "referencetotransformerrootstackGenreNestedStackGenreNestedStackResource2B91CA7DOutputstransformerrootstackGenreGenreTable6616CDA8Ref": {
+      "Type": "String"
+    },
+    "referencetotransformerrootstackLabelNestedStackLabelNestedStackResourceB15DD540OutputstransformerrootstackLabelLabelDataSource6CBB468DName": {
+      "Type": "String"
+    },
+    "referencetotransformerrootstackLabelNestedStackLabelNestedStackResourceB15DD540OutputstransformerrootstackLabelLabelTable164E01F7Ref": {
+      "Type": "String"
+    }
+  }
+}

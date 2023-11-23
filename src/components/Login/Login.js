@@ -42,6 +42,7 @@ const LoginComponent = () => {
       let {aws_cognito_region : region, aws_user_pools_web_client_id: client_id, oauth: {provider: identity_provider, redirectSignIn: redirect_uri, responseType: response_type, providerDomain: domain}}  = updatedAwsConfig;
       if (type === "IdP") {
         let uri = `https://${domain}.auth.${region}.amazoncognito.com/oauth2/authorize?identity_provider=${identity_provider}&redirect_uri=${redirect_uri}&response_type=${response_type}&client_id=${client_id}&scope=aws.cognito.signin.user.admin email openid profile`
+        console.log('uri: ', uri)
         window.location.assign(uri)
       } 
     } catch (error) {
