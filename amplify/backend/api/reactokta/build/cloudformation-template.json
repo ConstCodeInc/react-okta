@@ -128,7 +128,7 @@
                         "ApiId"
                     ]
                 },
-                "Expires": 1701343586
+                "Expires": 1701859105
             }
         },
         "GraphQLAPINONEDS95A13CF0": {
@@ -361,10 +361,22 @@
                     "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref": {
                         "Ref": "S3DeploymentRootKey"
                     },
+                    "referencetotransformerrootstackArtistNestedStackArtistNestedStackResource1CEC2AE5OutputstransformerrootstackArtistQuerygetArtistpreAuth0FunctionQuerygetArtistpreAuth0FunctionAppSyncFunction70F2E067FunctionId": {
+                        "Fn::GetAtt": [
+                            "Artist",
+                            "Outputs.transformerrootstackArtistQuerygetArtistpreAuth0FunctionQuerygetArtistpreAuth0FunctionAppSyncFunction70F2E067FunctionId"
+                        ]
+                    },
                     "referencetotransformerrootstackTodoNestedStackTodoNestedStackResource9AC126A3OutputstransformerrootstackTodoQuerygetTodopostAuth0FunctionQuerygetTodopostAuth0FunctionAppSyncFunction083ADD8DFunctionId": {
                         "Fn::GetAtt": [
                             "Todo",
                             "Outputs.transformerrootstackTodoQuerygetTodopostAuth0FunctionQuerygetTodopostAuth0FunctionAppSyncFunction083ADD8DFunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackArtistNestedStackArtistNestedStackResource1CEC2AE5OutputstransformerrootstackArtistQuerylistArtistspreAuth0FunctionQuerylistArtistspreAuth0FunctionAppSyncFunctionC0E46A0CFunctionId": {
+                        "Fn::GetAtt": [
+                            "Artist",
+                            "Outputs.transformerrootstackArtistQuerylistArtistspreAuth0FunctionQuerylistArtistspreAuth0FunctionAppSyncFunctionC0E46A0CFunctionId"
                         ]
                     },
                     "referencetotransformerrootstackArtistNestedStackArtistNestedStackResource1CEC2AE5OutputstransformerrootstackArtistMutationcreateArtistinit0FunctionMutationcreateArtistinit0FunctionAppSyncFunction3F007A33FunctionId": {
@@ -373,10 +385,22 @@
                             "Outputs.transformerrootstackArtistMutationcreateArtistinit0FunctionMutationcreateArtistinit0FunctionAppSyncFunction3F007A33FunctionId"
                         ]
                     },
+                    "referencetotransformerrootstackArtistNestedStackArtistNestedStackResource1CEC2AE5OutputstransformerrootstackArtistMutationcreateArtistpreAuth0FunctionMutationcreateArtistpreAuth0FunctionAppSyncFunction496E7824FunctionId": {
+                        "Fn::GetAtt": [
+                            "Artist",
+                            "Outputs.transformerrootstackArtistMutationcreateArtistpreAuth0FunctionMutationcreateArtistpreAuth0FunctionAppSyncFunction496E7824FunctionId"
+                        ]
+                    },
                     "referencetotransformerrootstackArtistNestedStackArtistNestedStackResource1CEC2AE5OutputstransformerrootstackArtistMutationupdateArtistinit0FunctionMutationupdateArtistinit0FunctionAppSyncFunctionD09B4507FunctionId": {
                         "Fn::GetAtt": [
                             "Artist",
                             "Outputs.transformerrootstackArtistMutationupdateArtistinit0FunctionMutationupdateArtistinit0FunctionAppSyncFunctionD09B4507FunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackArtistNestedStackArtistNestedStackResource1CEC2AE5OutputstransformerrootstackArtistMutationdeleteArtistpreAuth0FunctionMutationdeleteArtistpreAuth0FunctionAppSyncFunction788ACFADFunctionId": {
+                        "Fn::GetAtt": [
+                            "Artist",
+                            "Outputs.transformerrootstackArtistMutationdeleteArtistpreAuth0FunctionMutationdeleteArtistpreAuth0FunctionAppSyncFunction788ACFADFunctionId"
                         ]
                     },
                     "referencetotransformerrootstackTodoNestedStackTodoNestedStackResource9AC126A3OutputstransformerrootstackTodoSubscriptionOnCreateTodoDataResolverFnSubscriptionOnCreateTodoDataResolverFnAppSyncFunctionCED2552FFunctionId": {
@@ -585,17 +609,17 @@
                             "ApiId"
                         ]
                     },
-                    "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name": {
-                        "Fn::GetAtt": [
-                            "GraphQLAPINONEDS95A13CF0",
-                            "Name"
-                        ]
-                    },
                     "referencetotransformerrootstackS3DeploymentBucket7592718ARef": {
                         "Ref": "S3DeploymentBucket"
                     },
                     "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref": {
                         "Ref": "S3DeploymentRootKey"
+                    },
+                    "referencetotransformerrootstackArtistNestedStackArtistNestedStackResource1CEC2AE5OutputstransformerrootstackArtistQuerygetArtistpreAuth0FunctionQuerygetArtistpreAuth0FunctionAppSyncFunction70F2E067FunctionId": {
+                        "Fn::GetAtt": [
+                            "Artist",
+                            "Outputs.transformerrootstackArtistQuerygetArtistpreAuth0FunctionQuerygetArtistpreAuth0FunctionAppSyncFunction70F2E067FunctionId"
+                        ]
                     },
                     "referencetotransformerrootstackArtistNestedStackArtistNestedStackResource1CEC2AE5OutputstransformerrootstackArtistQuerygetArtistauth0FunctionQuerygetArtistauth0FunctionAppSyncFunction05F25259FunctionId": {
                         "Fn::GetAtt": [
@@ -609,16 +633,40 @@
                             "Outputs.transformerrootstackTodoQuerygetTodopostAuth0FunctionQuerygetTodopostAuth0FunctionAppSyncFunction083ADD8DFunctionId"
                         ]
                     },
+                    "referencetotransformerrootstackArtistNestedStackArtistNestedStackResource1CEC2AE5OutputstransformerrootstackArtistQuerylistArtistspreAuth0FunctionQuerylistArtistspreAuth0FunctionAppSyncFunctionC0E46A0CFunctionId": {
+                        "Fn::GetAtt": [
+                            "Artist",
+                            "Outputs.transformerrootstackArtistQuerylistArtistspreAuth0FunctionQuerylistArtistspreAuth0FunctionAppSyncFunctionC0E46A0CFunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name": {
+                        "Fn::GetAtt": [
+                            "GraphQLAPINONEDS95A13CF0",
+                            "Name"
+                        ]
+                    },
                     "referencetotransformerrootstackArtistNestedStackArtistNestedStackResource1CEC2AE5OutputstransformerrootstackArtistMutationcreateArtistinit0FunctionMutationcreateArtistinit0FunctionAppSyncFunction3F007A33FunctionId": {
                         "Fn::GetAtt": [
                             "Artist",
                             "Outputs.transformerrootstackArtistMutationcreateArtistinit0FunctionMutationcreateArtistinit0FunctionAppSyncFunction3F007A33FunctionId"
                         ]
                     },
+                    "referencetotransformerrootstackArtistNestedStackArtistNestedStackResource1CEC2AE5OutputstransformerrootstackArtistMutationcreateArtistpreAuth0FunctionMutationcreateArtistpreAuth0FunctionAppSyncFunction496E7824FunctionId": {
+                        "Fn::GetAtt": [
+                            "Artist",
+                            "Outputs.transformerrootstackArtistMutationcreateArtistpreAuth0FunctionMutationcreateArtistpreAuth0FunctionAppSyncFunction496E7824FunctionId"
+                        ]
+                    },
                     "referencetotransformerrootstackArtistNestedStackArtistNestedStackResource1CEC2AE5OutputstransformerrootstackArtistMutationupdateArtistinit0FunctionMutationupdateArtistinit0FunctionAppSyncFunctionD09B4507FunctionId": {
                         "Fn::GetAtt": [
                             "Artist",
                             "Outputs.transformerrootstackArtistMutationupdateArtistinit0FunctionMutationupdateArtistinit0FunctionAppSyncFunctionD09B4507FunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackArtistNestedStackArtistNestedStackResource1CEC2AE5OutputstransformerrootstackArtistMutationdeleteArtistpreAuth0FunctionMutationdeleteArtistpreAuth0FunctionAppSyncFunction788ACFADFunctionId": {
+                        "Fn::GetAtt": [
+                            "Artist",
+                            "Outputs.transformerrootstackArtistMutationdeleteArtistpreAuth0FunctionMutationdeleteArtistpreAuth0FunctionAppSyncFunction788ACFADFunctionId"
                         ]
                     },
                     "referencetotransformerrootstackArtistNestedStackArtistNestedStackResource1CEC2AE5OutputstransformerrootstackArtistSubscriptiononCreateArtistauth0FunctionSubscriptiononCreateArtistauth0FunctionAppSyncFunctionC391A1EFFunctionId": {
@@ -774,6 +822,55 @@
                             "Artist",
                             "Outputs.transformerrootstackArtistArtistOwnerDataResolverFnArtistOwnerDataResolverFnAppSyncFunction5DCA3BC7FunctionId"
                         ]
+                    }
+                }
+            },
+            "DependsOn": [
+                "GraphQLAPITransformerSchema3CB2AE18"
+            ]
+        },
+        "FunctionDirectiveStack": {
+            "Type": "AWS::CloudFormation::Stack",
+            "Properties": {
+                "TemplateURL": {
+                    "Fn::Join": [
+                        "",
+                        [
+                            "https://s3.",
+                            {
+                                "Ref": "AWS::Region"
+                            },
+                            ".",
+                            {
+                                "Ref": "AWS::URLSuffix"
+                            },
+                            "/",
+                            {
+                                "Ref": "S3DeploymentBucket"
+                            },
+                            "/",
+                            {
+                                "Ref": "S3DeploymentRootKey"
+                            },
+                            "/stacks/FunctionDirectiveStack.json"
+                        ]
+                    ]
+                },
+                "Parameters": {
+                    "referencetotransformerrootstackenv10C5A902Ref": {
+                        "Ref": "env"
+                    },
+                    "referencetotransformerrootstackGraphQLAPI20497F53ApiId": {
+                        "Fn::GetAtt": [
+                            "GraphQLAPI",
+                            "ApiId"
+                        ]
+                    },
+                    "referencetotransformerrootstackS3DeploymentBucket7592718ARef": {
+                        "Ref": "S3DeploymentBucket"
+                    },
+                    "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref": {
+                        "Ref": "S3DeploymentRootKey"
                     }
                 }
             },
@@ -947,6 +1044,7 @@
                 "ArtistGenre",
                 "Label",
                 "ArtistLabel",
+                "FunctionDirectiveStack",
                 "ConnectionStack"
             ]
         }

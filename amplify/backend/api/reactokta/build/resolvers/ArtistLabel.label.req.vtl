@@ -11,7 +11,7 @@
   $util.qr($GetRequest.put("query", {
   "expression": "#partitionKey = :partitionValue",
   "expressionNames": {
-      "#partitionKey": "label"
+      "#partitionKey": "id"
   },
   "expressionValues": {
       ":partitionValue": $util.parseJson($util.dynamodb.toDynamoDBJson($util.defaultIfNullOrBlank($ctx.source.label_id, "___xamznone____")))

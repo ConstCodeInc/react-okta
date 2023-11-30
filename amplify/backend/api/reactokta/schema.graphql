@@ -9,94 +9,107 @@ type Todo @model @auth(rules: [{ allow: private }]) {
 }
 
 type Artist
-@model
-(timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" })
-@auth(
-  rules: [
-    { allow: owner },
-    { allow: groups, groups: ["Admin"] },
-    { allow: private, operations: [read] }
-  ]
-)
-{
+  @model(timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" })
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: groups, groups: ["Admin"] }
+      { allow: private, operations: [read] }
+    ]
+  ) {
   id: ID! @primaryKey
   first_name: String
-  talent_genre: [ArtistGenre] @hasMany(indexName: "byArtistGenreByArtistId", fields: ["id"])
-  talent_label: [ArtistLabel] @hasMany(indexName: "byArtistLabelByArtistId", fields: ["id"])
+  talent_genre: [ArtistGenre]
+    @hasMany(indexName: "byArtistGenreByArtistId", fields: ["id"])
+  talent_label: [ArtistLabel]
+    @hasMany(indexName: "byArtistLabelByArtistId", fields: ["id"])
 }
 
 type Genre
-@model
-# @primaryKey(fields: ["genre"], name: "byGenreByGenre", queryField: "getGenreByGenre")
-(timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" })
-@auth(
-  rules: [
-    { allow: owner },
-    { allow: groups, groups: ["Admin"] },
-    { allow: public, operations: [read] },
-    { allow: private, operations: [read] }
-  ]
-)
-{
-  # id: ID!
-  genre: ID! @primaryKey
-  talent_genre: [ArtistGenre] @hasMany(indexName: "byArtistGenreByGenreId", fields: ["genre"])
+  @model(timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" })
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: groups, groups: ["Admin"] }
+      { allow: public, operations: [read] }
+      { allow: private, operations: [read] }
+    ]
+  ) {
+  id: ID! @primaryKey
+  genre: ID! @index(name: "byGenreByGenre", queryField: "getGenreByGenre")
+  talent_genre: [ArtistGenre]
+    @hasMany(indexName: "byArtistGenreByGenreId", fields: ["genre"])
 }
 
 type ArtistGenre
-@model
-(timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" })
-@auth(
-  rules: [
-    { allow: owner },
-    { allow: groups, groups: ["Admin"] },
-    { allow: private, operations: [read] }
-  ]
-)
-{
+  @model(timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" })
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: groups, groups: ["Admin"] }
+      { allow: private, operations: [read] }
+    ]
+  ) {
   id: ID! @primaryKey
-  artist_id: ID @index(name: "byArtistGenreByArtistId", queryField: "getArtistGenreByArtistId")
-  genre_id: ID @index(name: "byArtistGenreByGenreId", queryField: "getArtistGenreByGenreId")
+  artist_id: ID
+    @index(
+      name: "byArtistGenreByArtistId"
+      queryField: "getArtistGenreByArtistId"
+    )
+  genre_id: ID
+    @index(
+      name: "byArtistGenreByGenreId"
+      queryField: "getArtistGenreByGenreId"
+    )
   talent: Artist @belongsTo(fields: ["artist_id"])
   genre: Genre @belongsTo(fields: ["genre_id"])
 }
 
 type Label
-@model
-# @primaryKey(fields: ["label"], name: "byLabelByLabel", queryField: "getLabelByLabel")
-(timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" })
-@auth(
-  rules: [
-    { allow: owner },
-    { allow: groups, groups: ["Admin"] },
-    { allow: private, operations: [read] }
-  ]
-)
-{
-  # id: ID! @primaryKey
-  label: ID! @primaryKey
-  talent_label: [ArtistLabel] @hasMany(indexName: "byArtistLabelByLabelId", fields: ["label"])
+  @model(timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" })
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: groups, groups: ["Admin"] }
+      { allow: private, operations: [read] }
+    ]
+  ) {
+  id: ID! @primaryKey
+  label: ID! @index(name: "byLabelByLabel", queryField: "getLabelByLabel")
+  talent_label: [ArtistLabel]
+    @hasMany(indexName: "byArtistLabelByLabelId", fields: ["label"])
 }
 
 type ArtistLabel
-@model
-(timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" })
-@auth(
-  rules: [
-    { allow: owner },
-    { allow: groups, groups: ["Admin"] },
-    { allow: private, operations: [read] }
-  ]
-)
-{
+  @model(timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" })
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: groups, groups: ["Admin"] }
+      { allow: private, operations: [read] }
+    ]
+  ) {
   id: ID! @primaryKey
-  artist_id: ID @index(name: "byArtistLabelByArtistId", queryField: "getArtistLabelByArtistId")
-  label_id: ID @index(name: "byArtistLabelByLabelId", queryField: "getArtistLabelByLabelId")
+  artist_id: ID
+    @index(
+      name: "byArtistLabelByArtistId"
+      queryField: "getArtistLabelByArtistId"
+    )
+  label_id: ID
+    @index(
+      name: "byArtistLabelByLabelId"
+      queryField: "getArtistLabelByLabelId"
+    )
   talent: Artist @belongsTo(fields: ["artist_id"])
   label: Label @belongsTo(fields: ["label_id"])
 }
 
-type Query 
-{
-  getArtistsByGenresAndLabels(genreNames: [String]!, labelNames: [String]!): [Artist] @aws_api_key @aws_cognito_user_pools
+type Query {
+  # getArtistsByGenresAndLabels(genreNames: [String]!, labelNames: [String]!): [Artist] @aws_api_key @aws_cognito_user_pools
+  getGenresByName(genreNames: [String]!): [String]
+  getLabelsByName(genreNames: [String]!): [String]
+  getArtistsByGenresAndLabelsTwo(
+    genreNames: [String]!
+    labelNames: [String]!
+  ): [String] @function(name: "artistProcessor-${env}")
 }

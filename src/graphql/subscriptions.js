@@ -108,6 +108,7 @@ export const onCreateArtistGenre = /* GraphQL */ `
         owner
       }
       genre {
+        id
         genre
         createdOn
         updatedOn
@@ -136,6 +137,7 @@ export const onUpdateArtistGenre = /* GraphQL */ `
         owner
       }
       genre {
+        id
         genre
         createdOn
         updatedOn
@@ -164,6 +166,7 @@ export const onDeleteArtistGenre = /* GraphQL */ `
         owner
       }
       genre {
+        id
         genre
         createdOn
         updatedOn
@@ -181,6 +184,7 @@ export const onCreateLabel = /* GraphQL */ `
     $owner: String
   ) {
     onCreateLabel(filter: $filter, owner: $owner) {
+      id
       label
       talent_label {
         nextToken
@@ -197,6 +201,7 @@ export const onUpdateLabel = /* GraphQL */ `
     $owner: String
   ) {
     onUpdateLabel(filter: $filter, owner: $owner) {
+      id
       label
       talent_label {
         nextToken
@@ -213,6 +218,7 @@ export const onDeleteLabel = /* GraphQL */ `
     $owner: String
   ) {
     onDeleteLabel(filter: $filter, owner: $owner) {
+      id
       label
       talent_label {
         nextToken
@@ -240,6 +246,7 @@ export const onCreateArtistLabel = /* GraphQL */ `
         owner
       }
       label {
+        id
         label
         createdOn
         updatedOn
@@ -268,6 +275,7 @@ export const onUpdateArtistLabel = /* GraphQL */ `
         owner
       }
       label {
+        id
         label
         createdOn
         updatedOn
@@ -296,6 +304,7 @@ export const onDeleteArtistLabel = /* GraphQL */ `
         owner
       }
       label {
+        id
         label
         createdOn
         updatedOn
@@ -313,6 +322,7 @@ export const onCreateGenre = /* GraphQL */ `
     $owner: String
   ) {
     onCreateGenre(filter: $filter, owner: $owner) {
+      id
       genre
       talent_genre {
         nextToken
@@ -329,6 +339,7 @@ export const onUpdateGenre = /* GraphQL */ `
     $owner: String
   ) {
     onUpdateGenre(filter: $filter, owner: $owner) {
+      id
       genre
       talent_genre {
         nextToken
@@ -345,6 +356,7 @@ export const onDeleteGenre = /* GraphQL */ `
     $owner: String
   ) {
     onDeleteGenre(filter: $filter, owner: $owner) {
+      id
       genre
       talent_genre {
         nextToken

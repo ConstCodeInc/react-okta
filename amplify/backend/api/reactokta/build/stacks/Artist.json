@@ -1526,42 +1526,10 @@
         }
       }
     },
-    "transformerrootstackArtistMutationcreateArtistinit0FunctionMutationcreateArtistinit0FunctionAppSyncFunction3F007A33FunctionId": {
-      "Value": {
-        "Fn::GetAtt": [
-          "MutationcreateArtistinit0FunctionMutationcreateArtistinit0FunctionAppSyncFunction10162557",
-          "FunctionId"
-        ]
-      }
-    },
-    "transformerrootstackArtistMutationupdateArtistinit0FunctionMutationupdateArtistinit0FunctionAppSyncFunctionD09B4507FunctionId": {
-      "Value": {
-        "Fn::GetAtt": [
-          "MutationupdateArtistinit0FunctionMutationupdateArtistinit0FunctionAppSyncFunctionAF9FABD0",
-          "FunctionId"
-        ]
-      }
-    },
-    "transformerrootstackArtistArtistOwnerDataResolverFnArtistOwnerDataResolverFnAppSyncFunction5DCA3BC7FunctionId": {
-      "Value": {
-        "Fn::GetAtt": [
-          "ArtistOwnerDataResolverFnArtistOwnerDataResolverFnAppSyncFunctionE7C3B99F",
-          "FunctionId"
-        ]
-      }
-    },
     "transformerrootstackArtistQuerygetArtistpreAuth0FunctionQuerygetArtistpreAuth0FunctionAppSyncFunction70F2E067FunctionId": {
       "Value": {
         "Fn::GetAtt": [
           "QuerygetArtistpreAuth0FunctionQuerygetArtistpreAuth0FunctionAppSyncFunctionC53C1E5B",
-          "FunctionId"
-        ]
-      }
-    },
-    "transformerrootstackArtistQuerygetArtistauth0FunctionQuerygetArtistauth0FunctionAppSyncFunction05F25259FunctionId": {
-      "Value": {
-        "Fn::GetAtt": [
-          "QuerygetArtistauth0FunctionQuerygetArtistauth0FunctionAppSyncFunction241174B1",
           "FunctionId"
         ]
       }
@@ -1574,6 +1542,14 @@
         ]
       }
     },
+    "transformerrootstackArtistMutationcreateArtistinit0FunctionMutationcreateArtistinit0FunctionAppSyncFunction3F007A33FunctionId": {
+      "Value": {
+        "Fn::GetAtt": [
+          "MutationcreateArtistinit0FunctionMutationcreateArtistinit0FunctionAppSyncFunction10162557",
+          "FunctionId"
+        ]
+      }
+    },
     "transformerrootstackArtistMutationcreateArtistpreAuth0FunctionMutationcreateArtistpreAuth0FunctionAppSyncFunction496E7824FunctionId": {
       "Value": {
         "Fn::GetAtt": [
@@ -1582,10 +1558,34 @@
         ]
       }
     },
+    "transformerrootstackArtistMutationupdateArtistinit0FunctionMutationupdateArtistinit0FunctionAppSyncFunctionD09B4507FunctionId": {
+      "Value": {
+        "Fn::GetAtt": [
+          "MutationupdateArtistinit0FunctionMutationupdateArtistinit0FunctionAppSyncFunctionAF9FABD0",
+          "FunctionId"
+        ]
+      }
+    },
     "transformerrootstackArtistMutationdeleteArtistpreAuth0FunctionMutationdeleteArtistpreAuth0FunctionAppSyncFunction788ACFADFunctionId": {
       "Value": {
         "Fn::GetAtt": [
           "MutationdeleteArtistpreAuth0FunctionMutationdeleteArtistpreAuth0FunctionAppSyncFunctionAC7DBF6D",
+          "FunctionId"
+        ]
+      }
+    },
+    "transformerrootstackArtistArtistOwnerDataResolverFnArtistOwnerDataResolverFnAppSyncFunction5DCA3BC7FunctionId": {
+      "Value": {
+        "Fn::GetAtt": [
+          "ArtistOwnerDataResolverFnArtistOwnerDataResolverFnAppSyncFunctionE7C3B99F",
+          "FunctionId"
+        ]
+      }
+    },
+    "transformerrootstackArtistQuerygetArtistauth0FunctionQuerygetArtistauth0FunctionAppSyncFunction05F25259FunctionId": {
+      "Value": {
+        "Fn::GetAtt": [
+          "QuerygetArtistauth0FunctionQuerygetArtistauth0FunctionAppSyncFunction241174B1",
           "FunctionId"
         ]
       }

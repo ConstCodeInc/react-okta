@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "api": {
+      "reactokta": [
+        "Query",
+        "Mutation"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

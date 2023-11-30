@@ -16,7 +16,12 @@ type Artist {
   owner: String
 }
 
+type ArtistIds {
+  ids: [String]
+}
+
 type Genre @aws_api_key @aws_cognito_user_pools {
+  id: ID!
   genre: ID!
   talent_genre(filter: ModelArtistGenreFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelArtistGenreConnection
   createdOn: AWSDateTime!
@@ -36,6 +41,7 @@ type ArtistGenre {
 }
 
 type Label {
+  id: ID!
   label: ID!
   talent_label(filter: ModelArtistLabelFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelArtistLabelConnection
   createdOn: AWSDateTime!
@@ -55,23 +61,25 @@ type ArtistLabel {
 }
 
 type Query {
-  getArtistsByGenresAndLabels(genreNames: [String]!, labelNames: [String]!): [Artist] @aws_api_key @aws_cognito_user_pools
+  getArtistsByGenresAndLabelsTwo(genreNames: [String]!, labelNames: [String]!): [ArtistIds]
   getTodo(id: ID!): Todo
   listTodos(filter: ModelTodoFilterInput, limit: Int, nextToken: String): ModelTodoConnection
   getArtist(id: ID!): Artist
   listArtists(id: ID, filter: ModelArtistFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelArtistConnection
   getArtistGenre(id: ID!): ArtistGenre
   listArtistGenres(id: ID, filter: ModelArtistGenreFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelArtistGenreConnection
-  getLabel(label: ID!): Label
-  listLabels(label: ID, filter: ModelLabelFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelLabelConnection
+  getLabel(id: ID!): Label
+  listLabels(id: ID, filter: ModelLabelFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelLabelConnection
   getArtistLabel(id: ID!): ArtistLabel
   listArtistLabels(id: ID, filter: ModelArtistLabelFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelArtistLabelConnection
   getArtistGenreByArtistId(artist_id: ID!, sortDirection: ModelSortDirection, filter: ModelArtistGenreFilterInput, limit: Int, nextToken: String): ModelArtistGenreConnection
   getArtistGenreByGenreId(genre_id: ID!, sortDirection: ModelSortDirection, filter: ModelArtistGenreFilterInput, limit: Int, nextToken: String): ModelArtistGenreConnection
+  getLabelByLabel(label: ID!, sortDirection: ModelSortDirection, filter: ModelLabelFilterInput, limit: Int, nextToken: String): ModelLabelConnection
   getArtistLabelByArtistId(artist_id: ID!, sortDirection: ModelSortDirection, filter: ModelArtistLabelFilterInput, limit: Int, nextToken: String): ModelArtistLabelConnection
   getArtistLabelByLabelId(label_id: ID!, sortDirection: ModelSortDirection, filter: ModelArtistLabelFilterInput, limit: Int, nextToken: String): ModelArtistLabelConnection
-  getGenre(genre: ID!): Genre @aws_api_key @aws_cognito_user_pools
-  listGenres(genre: ID, filter: ModelGenreFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelGenreConnection @aws_api_key @aws_cognito_user_pools
+  getGenre(id: ID!): Genre @aws_api_key @aws_cognito_user_pools
+  listGenres(id: ID, filter: ModelGenreFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelGenreConnection @aws_api_key @aws_cognito_user_pools
+  getGenreByGenre(genre: ID!, sortDirection: ModelSortDirection, filter: ModelGenreFilterInput, limit: Int, nextToken: String): ModelGenreConnection @aws_api_key @aws_cognito_user_pools
 }
 
 input ModelStringInput {
@@ -354,6 +362,7 @@ type ModelGenreConnection @aws_api_key @aws_cognito_user_pools {
 }
 
 input ModelGenreFilterInput {
+  id: ModelIDInput
   genre: ModelIDInput
   and: [ModelGenreFilterInput]
   or: [ModelGenreFilterInput]
@@ -361,24 +370,28 @@ input ModelGenreFilterInput {
 }
 
 input ModelGenreConditionInput {
+  genre: ModelIDInput
   and: [ModelGenreConditionInput]
   or: [ModelGenreConditionInput]
   not: ModelGenreConditionInput
 }
 
 input CreateGenreInput {
+  id: ID
   genre: ID!
 }
 
 input UpdateGenreInput {
-  genre: ID!
+  id: ID!
+  genre: ID
 }
 
 input DeleteGenreInput {
-  genre: ID!
+  id: ID!
 }
 
 input ModelSubscriptionGenreFilterInput {
+  id: ModelSubscriptionIDInput
   genre: ModelSubscriptionIDInput
   and: [ModelSubscriptionGenreFilterInput]
   or: [ModelSubscriptionGenreFilterInput]
@@ -436,6 +449,7 @@ type ModelLabelConnection {
 }
 
 input ModelLabelFilterInput {
+  id: ModelIDInput
   label: ModelIDInput
   and: [ModelLabelFilterInput]
   or: [ModelLabelFilterInput]
@@ -443,24 +457,28 @@ input ModelLabelFilterInput {
 }
 
 input ModelLabelConditionInput {
+  label: ModelIDInput
   and: [ModelLabelConditionInput]
   or: [ModelLabelConditionInput]
   not: ModelLabelConditionInput
 }
 
 input CreateLabelInput {
+  id: ID
   label: ID!
 }
 
 input UpdateLabelInput {
-  label: ID!
+  id: ID!
+  label: ID
 }
 
 input DeleteLabelInput {
-  label: ID!
+  id: ID!
 }
 
 input ModelSubscriptionLabelFilterInput {
+  id: ModelSubscriptionIDInput
   label: ModelSubscriptionIDInput
   and: [ModelSubscriptionLabelFilterInput]
   or: [ModelSubscriptionLabelFilterInput]

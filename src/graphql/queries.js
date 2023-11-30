@@ -1,26 +1,16 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getArtistsByGenresAndLabels = /* GraphQL */ `
-  query GetArtistsByGenresAndLabels(
+export const getArtistsByGenresAndLabelsTwo = /* GraphQL */ `
+  query GetArtistsByGenresAndLabelsTwo(
     $genreNames: [String]!
     $labelNames: [String]!
   ) {
-    getArtistsByGenresAndLabels(
+    getArtistsByGenresAndLabelsTwo(
       genreNames: $genreNames
       labelNames: $labelNames
     ) {
-      id
-      first_name
-      talent_genre {
-        nextToken
-      }
-      talent_label {
-        nextToken
-      }
-      createdOn
-      updatedOn
-      owner
+      ids
     }
   }
 `;
@@ -108,6 +98,7 @@ export const getArtistGenre = /* GraphQL */ `
         owner
       }
       genre {
+        id
         genre
         createdOn
         updatedOn
@@ -147,8 +138,9 @@ export const listArtistGenres = /* GraphQL */ `
   }
 `;
 export const getLabel = /* GraphQL */ `
-  query GetLabel($label: ID!) {
-    getLabel(label: $label) {
+  query GetLabel($id: ID!) {
+    getLabel(id: $id) {
+      id
       label
       talent_label {
         nextToken
@@ -161,20 +153,21 @@ export const getLabel = /* GraphQL */ `
 `;
 export const listLabels = /* GraphQL */ `
   query ListLabels(
-    $label: ID
+    $id: ID
     $filter: ModelLabelFilterInput
     $limit: Int
     $nextToken: String
     $sortDirection: ModelSortDirection
   ) {
     listLabels(
-      label: $label
+      id: $id
       filter: $filter
       limit: $limit
       nextToken: $nextToken
       sortDirection: $sortDirection
     ) {
       items {
+        id
         label
         createdOn
         updatedOn
@@ -198,6 +191,7 @@ export const getArtistLabel = /* GraphQL */ `
         owner
       }
       label {
+        id
         label
         createdOn
         updatedOn
@@ -290,6 +284,32 @@ export const getArtistGenreByGenreId = /* GraphQL */ `
     }
   }
 `;
+export const getLabelByLabel = /* GraphQL */ `
+  query GetLabelByLabel(
+    $label: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelLabelFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getLabelByLabel(
+      label: $label
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        label
+        createdOn
+        updatedOn
+        owner
+      }
+      nextToken
+    }
+  }
+`;
 export const getArtistLabelByArtistId = /* GraphQL */ `
   query GetArtistLabelByArtistId(
     $artist_id: ID!
@@ -345,8 +365,9 @@ export const getArtistLabelByLabelId = /* GraphQL */ `
   }
 `;
 export const getGenre = /* GraphQL */ `
-  query GetGenre($genre: ID!) {
-    getGenre(genre: $genre) {
+  query GetGenre($id: ID!) {
+    getGenre(id: $id) {
+      id
       genre
       talent_genre {
         nextToken
@@ -359,20 +380,47 @@ export const getGenre = /* GraphQL */ `
 `;
 export const listGenres = /* GraphQL */ `
   query ListGenres(
-    $genre: ID
+    $id: ID
     $filter: ModelGenreFilterInput
     $limit: Int
     $nextToken: String
     $sortDirection: ModelSortDirection
   ) {
     listGenres(
-      genre: $genre
+      id: $id
       filter: $filter
       limit: $limit
       nextToken: $nextToken
       sortDirection: $sortDirection
     ) {
       items {
+        id
+        genre
+        createdOn
+        updatedOn
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getGenreByGenre = /* GraphQL */ `
+  query GetGenreByGenre(
+    $genre: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelGenreFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getGenreByGenre(
+      genre: $genre
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
         genre
         createdOn
         updatedOn

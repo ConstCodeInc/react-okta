@@ -106,6 +106,7 @@ export const createGenre = /* GraphQL */ `
     $condition: ModelGenreConditionInput
   ) {
     createGenre(input: $input, condition: $condition) {
+      id
       genre
       talent_genre {
         nextToken
@@ -122,6 +123,7 @@ export const updateGenre = /* GraphQL */ `
     $condition: ModelGenreConditionInput
   ) {
     updateGenre(input: $input, condition: $condition) {
+      id
       genre
       talent_genre {
         nextToken
@@ -138,6 +140,7 @@ export const deleteGenre = /* GraphQL */ `
     $condition: ModelGenreConditionInput
   ) {
     deleteGenre(input: $input, condition: $condition) {
+      id
       genre
       talent_genre {
         nextToken
@@ -165,6 +168,7 @@ export const createArtistGenre = /* GraphQL */ `
         owner
       }
       genre {
+        id
         genre
         createdOn
         updatedOn
@@ -193,6 +197,7 @@ export const updateArtistGenre = /* GraphQL */ `
         owner
       }
       genre {
+        id
         genre
         createdOn
         updatedOn
@@ -221,6 +226,7 @@ export const deleteArtistGenre = /* GraphQL */ `
         owner
       }
       genre {
+        id
         genre
         createdOn
         updatedOn
@@ -238,6 +244,7 @@ export const createLabel = /* GraphQL */ `
     $condition: ModelLabelConditionInput
   ) {
     createLabel(input: $input, condition: $condition) {
+      id
       label
       talent_label {
         nextToken
@@ -254,6 +261,7 @@ export const updateLabel = /* GraphQL */ `
     $condition: ModelLabelConditionInput
   ) {
     updateLabel(input: $input, condition: $condition) {
+      id
       label
       talent_label {
         nextToken
@@ -270,6 +278,7 @@ export const deleteLabel = /* GraphQL */ `
     $condition: ModelLabelConditionInput
   ) {
     deleteLabel(input: $input, condition: $condition) {
+      id
       label
       talent_label {
         nextToken
@@ -297,6 +306,7 @@ export const createArtistLabel = /* GraphQL */ `
         owner
       }
       label {
+        id
         label
         createdOn
         updatedOn
@@ -325,6 +335,7 @@ export const updateArtistLabel = /* GraphQL */ `
         owner
       }
       label {
+        id
         label
         createdOn
         updatedOn
@@ -353,6 +364,7 @@ export const deleteArtistLabel = /* GraphQL */ `
         owner
       }
       label {
+        id
         label
         createdOn
         updatedOn

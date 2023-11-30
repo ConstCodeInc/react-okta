@@ -60,6 +60,24 @@
       "service": "Cognito"
     }
   },
+  "function": {
+    "artistProcessor": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "reactokta"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
   "hosting": {
     "amplifyhosting": {
       "providerPlugin": "awscloudformation",
@@ -68,6 +86,22 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_artistProcessor_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "artistProcessor"
+        }
+      ]
+    },
+    "AMPLIFY_function_artistProcessor_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "artistProcessor"
+        }
+      ]
+    },
     "AMPLIFY_hosting_amplifyhosting_appId": {
       "usedBy": [
         {
