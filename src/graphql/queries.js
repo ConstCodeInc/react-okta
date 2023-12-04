@@ -1,6 +1,42 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getGenresByName = /* GraphQL */ `
+  query GetGenresByName(
+    $genreNames: [String]!
+    $limit: Int
+    $nextToken: String
+  ) {
+    getGenresByName(
+      genreNames: $genreNames
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      getGenresByName {
+        id
+        genre
+        createdOn
+        updatedOn
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getLabelsByName = /* GraphQL */ `
+  query GetLabelsByName($labelNames: [String]!) {
+    getLabelsByName(labelNames: $labelNames) {
+      id
+      label
+      talent_label {
+        nextToken
+      }
+      createdOn
+      updatedOn
+      owner
+    }
+  }
+`;
 export const getArtistsByGenresAndLabelsTwo = /* GraphQL */ `
   query GetArtistsByGenresAndLabelsTwo(
     $genreNames: [String]!
@@ -9,9 +45,7 @@ export const getArtistsByGenresAndLabelsTwo = /* GraphQL */ `
     getArtistsByGenresAndLabelsTwo(
       genreNames: $genreNames
       labelNames: $labelNames
-    ) {
-      ids
-    }
+    )
   }
 `;
 export const getTodo = /* GraphQL */ `

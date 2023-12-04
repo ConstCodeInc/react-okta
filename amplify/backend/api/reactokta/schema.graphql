@@ -40,6 +40,10 @@ type Genre
   talent_genre: [ArtistGenre]
     @hasMany(indexName: "byArtistGenreByGenreId", fields: ["genre"])
 }
+type GenreConnection {
+  getGenresByName: [Genre]
+  nextToken: String
+}
 
 type ArtistGenre
   @model(timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" })
@@ -106,8 +110,12 @@ type ArtistLabel
 
 type Query {
   # getArtistsByGenresAndLabels(genreNames: [String]!, labelNames: [String]!): [Artist] @aws_api_key @aws_cognito_user_pools
-  getGenresByName(genreNames: [String]!): [String]
-  getLabelsByName(genreNames: [String]!): [String]
+  getGenresByName(
+    genreNames: [String]!
+    limit: Int
+    nextToken: String
+  ): GenreConnection
+  getLabelsByName(labelNames: [String]!): [Label]
   getArtistsByGenresAndLabelsTwo(
     genreNames: [String]!
     labelNames: [String]!

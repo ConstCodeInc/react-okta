@@ -24,14 +24,6 @@
     "S3DeploymentRootKey": {
       "Type": "String",
       "Description": "An S3 key relative to the S3DeploymentBucket that points to the root\nof the deployment directory."
-    },
-    "GenreTableName": {
-      "Type": "String",
-      "Description": "name of the table to set the datasource"
-    },
-    "LabelTableName": {
-      "Type": "String",
-      "Description": "name of the table to set the datasource"
     }
   },
   "Resources": {
@@ -129,9 +121,7 @@
           "AwsRegion": {
             "Ref": "AWS::Region"
           },
-          "TableName": {
-            "Ref": "GenreTableName"
-          }
+          "TableName": "Genre-pwvbldwbyfcj5pcjoontu6ikh4-dev"
         }
       }
     },
@@ -153,9 +143,7 @@
           "AwsRegion": {
             "Ref": "AWS::Region"
           },
-          "TableName": {
-            "Ref": "LabelTableName"
-          }
+          "TableName": "Label-pwvbldwbyfcj5pcjoontu6ikh4-dev"
         }
       }
     },

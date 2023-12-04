@@ -16,10 +16,6 @@ type Artist {
   owner: String
 }
 
-type ArtistIds {
-  ids: [String]
-}
-
 type Genre @aws_api_key @aws_cognito_user_pools {
   id: ID!
   genre: ID!
@@ -27,6 +23,11 @@ type Genre @aws_api_key @aws_cognito_user_pools {
   createdOn: AWSDateTime!
   updatedOn: AWSDateTime!
   owner: String
+}
+
+type GenreConnection {
+  getGenresByName: [Genre]
+  nextToken: String
 }
 
 type ArtistGenre {
@@ -61,7 +62,9 @@ type ArtistLabel {
 }
 
 type Query {
-  getArtistsByGenresAndLabelsTwo(genreNames: [String]!, labelNames: [String]!): [ArtistIds]
+  getGenresByName(genreNames: [String]!, limit: Int, nextToken: String): GenreConnection
+  getLabelsByName(labelNames: [String]!): [Label]
+  getArtistsByGenresAndLabelsTwo(genreNames: [String]!, labelNames: [String]!): [String]
   getTodo(id: ID!): Todo
   listTodos(filter: ModelTodoFilterInput, limit: Int, nextToken: String): ModelTodoConnection
   getArtist(id: ID!): Artist
