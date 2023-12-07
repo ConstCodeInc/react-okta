@@ -27,7 +27,7 @@
       "function": {
         "artistProcessor": {
           "deploymentBucketName": "amplify-reactokta-dev-175627-deployment",
-          "s3Key": "amplify-builds/artistProcessor-68335536457046496e31-build.zip"
+          "s3Key": "amplify-builds/artistProcessor-42737765436e6a4d6948-build.zip"
         }
       }
     }

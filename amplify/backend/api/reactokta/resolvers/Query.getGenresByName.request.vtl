@@ -1,17 +1,12 @@
 {
-  "version": "2017-02-28",
-  "operation": "Scan",
-  "limit": 10,
-  "nextToken": $util.toJson($context.args.nextToken),
-  "filter": {
-    "expression": "#genreAttr IN (:value1, :value2, :value3)",
-    "expressionNames": {
-      "#genreAttr": "genre"
-    },
-    "expressionValues": {
-      ":value1": { "S": "Pop" },
-      ":value2": { "S": "Classical" },
-      ":value3": { "S": "Rock" }
+    "version" : "2017-02-28",
+    "operation" : "Scan",
+    "limit": $util.defaultIfNull($ctx.args.limit, 1000),
+  	"nextToken": $util.toJson($context.args.nextToken),
+    "filter" : {
+        "expression": "contains (:genres, genre)",
+        "expressionValues" : {
+            ":genres" : $util.dynamodb.toDynamoDBJson($context.args.genreNames)
+        }
     }
-  }
 }

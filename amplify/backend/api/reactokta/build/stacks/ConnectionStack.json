@@ -475,36 +475,6 @@
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "ArtistGenregenreauth0FunctionArtistGenregenreauth0FunctionAppSyncFunctionE5137CD0": {
-      "Type": "AWS::AppSync::FunctionConfiguration",
-      "Properties": {
-        "ApiId": {
-          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
-        },
-        "DataSourceName": {
-          "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
-        },
-        "FunctionVersion": "2018-05-29",
-        "Name": "ArtistGenregenreauth0Function",
-        "RequestMappingTemplateS3Location": {
-          "Fn::Join": [
-            "",
-            [
-              "s3://",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
-              },
-              "/",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
-              },
-              "/resolvers/ArtistGenre.genre.auth.1.req.vtl"
-            ]
-          ]
-        },
-        "ResponseMappingTemplate": "$util.toJson({})"
-      }
-    },
     "ArtistGenreGenreDataResolverFnArtistGenreGenreDataResolverFnAppSyncFunctionD9AE3654": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
@@ -563,7 +533,7 @@
           "Functions": [
             {
               "Fn::GetAtt": [
-                "ArtistGenregenreauth0FunctionArtistGenregenreauth0FunctionAppSyncFunctionE5137CD0",
+                "Artisttalentgenreauth0FunctionArtisttalentgenreauth0FunctionAppSyncFunctionDFB4446E",
                 "FunctionId"
               ]
             },

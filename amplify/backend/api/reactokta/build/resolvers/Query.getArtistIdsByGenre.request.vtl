@@ -1,0 +1,12 @@
+{
+    "version" : "2017-02-28",
+    "operation" : "Scan",
+    "limit": $util.defaultIfNull($ctx.args.limit, 1000),
+  	"nextToken": $util.toJson($context.args.nextToken),
+    "filter" : {
+        "expression": "contains (:ids, genre_id)",
+        "expressionValues" : {
+            ":ids" : $util.dynamodb.toDynamoDBJson($context.args.ids)
+        }
+    }
+}

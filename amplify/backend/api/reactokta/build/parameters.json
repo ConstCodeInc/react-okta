@@ -9,5 +9,5 @@
         ]
     },
     "S3DeploymentBucket": "amplify-reactokta-dev-175627-deployment",
-    "S3DeploymentRootKey": "amplify-appsync-files/f2f00a629e700b9f9f04b1c9ae786c1bc0cec739"
+    "S3DeploymentRootKey": "amplify-appsync-files/3d7f015b37dd2815e58ba97d401df2ebe8a338d0"
 }

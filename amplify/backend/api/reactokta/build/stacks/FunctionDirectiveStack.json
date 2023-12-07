@@ -186,13 +186,13 @@
         "ArtistProcessorLambdaDataSource"
       ]
     },
-    "QuerygetArtistsByGenresAndLabelsTwoResolver": {
+    "QuerygetArtistsByGenresAndLabelsResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "getArtistsByGenresAndLabelsTwo",
+        "FieldName": "getArtistsByGenresAndLabels",
         "TypeName": "Query",
         "Kind": "PIPELINE",
         "PipelineConfig": {
@@ -205,7 +205,7 @@
             }
           ]
         },
-        "RequestMappingTemplate": "## [Start] Stash resolver specific context.. **\n$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"getArtistsByGenresAndLabelsTwo\"))\n{}\n## [End] Stash resolver specific context.. **",
+        "RequestMappingTemplate": "## [Start] Stash resolver specific context.. **\n$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"getArtistsByGenresAndLabels\"))\n{}\n## [End] Stash resolver specific context.. **",
         "ResponseMappingTemplateS3Location": {
           "Fn::Join": [
             "",
@@ -218,7 +218,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Query.getArtistsByGenresAndLabelsTwo.res.vtl"
+              "/resolvers/Query.getArtistsByGenresAndLabels.res.vtl"
             ]
           ]
         }

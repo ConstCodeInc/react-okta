@@ -91,6 +91,57 @@ export const onDeleteArtist = /* GraphQL */ `
     }
   }
 `;
+export const onCreateGenre = /* GraphQL */ `
+  subscription OnCreateGenre(
+    $filter: ModelSubscriptionGenreFilterInput
+    $owner: String
+  ) {
+    onCreateGenre(filter: $filter, owner: $owner) {
+      id
+      genre
+      talent_genre {
+        nextToken
+      }
+      createdOn
+      updatedOn
+      owner
+    }
+  }
+`;
+export const onUpdateGenre = /* GraphQL */ `
+  subscription OnUpdateGenre(
+    $filter: ModelSubscriptionGenreFilterInput
+    $owner: String
+  ) {
+    onUpdateGenre(filter: $filter, owner: $owner) {
+      id
+      genre
+      talent_genre {
+        nextToken
+      }
+      createdOn
+      updatedOn
+      owner
+    }
+  }
+`;
+export const onDeleteGenre = /* GraphQL */ `
+  subscription OnDeleteGenre(
+    $filter: ModelSubscriptionGenreFilterInput
+    $owner: String
+  ) {
+    onDeleteGenre(filter: $filter, owner: $owner) {
+      id
+      genre
+      talent_genre {
+        nextToken
+      }
+      createdOn
+      updatedOn
+      owner
+    }
+  }
+`;
 export const onCreateArtistGenre = /* GraphQL */ `
   subscription OnCreateArtistGenre(
     $filter: ModelSubscriptionArtistGenreFilterInput
@@ -309,57 +360,6 @@ export const onDeleteArtistLabel = /* GraphQL */ `
         createdOn
         updatedOn
         owner
-      }
-      createdOn
-      updatedOn
-      owner
-    }
-  }
-`;
-export const onCreateGenre = /* GraphQL */ `
-  subscription OnCreateGenre(
-    $filter: ModelSubscriptionGenreFilterInput
-    $owner: String
-  ) {
-    onCreateGenre(filter: $filter, owner: $owner) {
-      id
-      genre
-      talent_genre {
-        nextToken
-      }
-      createdOn
-      updatedOn
-      owner
-    }
-  }
-`;
-export const onUpdateGenre = /* GraphQL */ `
-  subscription OnUpdateGenre(
-    $filter: ModelSubscriptionGenreFilterInput
-    $owner: String
-  ) {
-    onUpdateGenre(filter: $filter, owner: $owner) {
-      id
-      genre
-      talent_genre {
-        nextToken
-      }
-      createdOn
-      updatedOn
-      owner
-    }
-  }
-`;
-export const onDeleteGenre = /* GraphQL */ `
-  subscription OnDeleteGenre(
-    $filter: ModelSubscriptionGenreFilterInput
-    $owner: String
-  ) {
-    onDeleteGenre(filter: $filter, owner: $owner) {
-      id
-      genre
-      talent_genre {
-        nextToken
       }
       createdOn
       updatedOn

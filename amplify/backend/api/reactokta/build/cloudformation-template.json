@@ -128,7 +128,7 @@
                         "ApiId"
                     ]
                 },
-                "Expires": 1702164986
+                "Expires": 1702474600
             }
         },
         "GraphQLAPINONEDS95A13CF0": {
@@ -349,12 +349,6 @@
                             "ApiId"
                         ]
                     },
-                    "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name": {
-                        "Fn::GetAtt": [
-                            "GraphQLAPINONEDS95A13CF0",
-                            "Name"
-                        ]
-                    },
                     "referencetotransformerrootstackS3DeploymentBucket7592718ARef": {
                         "Ref": "S3DeploymentBucket"
                     },
@@ -367,6 +361,12 @@
                             "Outputs.transformerrootstackArtistQuerygetArtistpreAuth0FunctionQuerygetArtistpreAuth0FunctionAppSyncFunction70F2E067FunctionId"
                         ]
                     },
+                    "referencetotransformerrootstackArtistNestedStackArtistNestedStackResource1CEC2AE5OutputstransformerrootstackArtistQuerygetArtistauth0FunctionQuerygetArtistauth0FunctionAppSyncFunction05F25259FunctionId": {
+                        "Fn::GetAtt": [
+                            "Artist",
+                            "Outputs.transformerrootstackArtistQuerygetArtistauth0FunctionQuerygetArtistauth0FunctionAppSyncFunction05F25259FunctionId"
+                        ]
+                    },
                     "referencetotransformerrootstackTodoNestedStackTodoNestedStackResource9AC126A3OutputstransformerrootstackTodoQuerygetTodopostAuth0FunctionQuerygetTodopostAuth0FunctionAppSyncFunction083ADD8DFunctionId": {
                         "Fn::GetAtt": [
                             "Todo",
@@ -377,6 +377,12 @@
                         "Fn::GetAtt": [
                             "Artist",
                             "Outputs.transformerrootstackArtistQuerylistArtistspreAuth0FunctionQuerylistArtistspreAuth0FunctionAppSyncFunctionC0E46A0CFunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name": {
+                        "Fn::GetAtt": [
+                            "GraphQLAPINONEDS95A13CF0",
+                            "Name"
                         ]
                     },
                     "referencetotransformerrootstackArtistNestedStackArtistNestedStackResource1CEC2AE5OutputstransformerrootstackArtistMutationcreateArtistinit0FunctionMutationcreateArtistinit0FunctionAppSyncFunction3F007A33FunctionId": {
@@ -401,6 +407,12 @@
                         "Fn::GetAtt": [
                             "Artist",
                             "Outputs.transformerrootstackArtistMutationdeleteArtistpreAuth0FunctionMutationdeleteArtistpreAuth0FunctionAppSyncFunction788ACFADFunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackArtistNestedStackArtistNestedStackResource1CEC2AE5OutputstransformerrootstackArtistSubscriptiononCreateArtistauth0FunctionSubscriptiononCreateArtistauth0FunctionAppSyncFunctionC391A1EFFunctionId": {
+                        "Fn::GetAtt": [
+                            "Artist",
+                            "Outputs.transformerrootstackArtistSubscriptiononCreateArtistauth0FunctionSubscriptiononCreateArtistauth0FunctionAppSyncFunctionC391A1EFFunctionId"
                         ]
                     },
                     "referencetotransformerrootstackTodoNestedStackTodoNestedStackResource9AC126A3OutputstransformerrootstackTodoSubscriptionOnCreateTodoDataResolverFnSubscriptionOnCreateTodoDataResolverFnAppSyncFunctionCED2552FFunctionId": {

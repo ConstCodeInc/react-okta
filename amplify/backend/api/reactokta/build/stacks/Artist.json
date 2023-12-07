@@ -1534,6 +1534,14 @@
         ]
       }
     },
+    "transformerrootstackArtistQuerygetArtistauth0FunctionQuerygetArtistauth0FunctionAppSyncFunction05F25259FunctionId": {
+      "Value": {
+        "Fn::GetAtt": [
+          "QuerygetArtistauth0FunctionQuerygetArtistauth0FunctionAppSyncFunction241174B1",
+          "FunctionId"
+        ]
+      }
+    },
     "transformerrootstackArtistQuerylistArtistspreAuth0FunctionQuerylistArtistspreAuth0FunctionAppSyncFunctionC0E46A0CFunctionId": {
       "Value": {
         "Fn::GetAtt": [
@@ -1574,26 +1582,18 @@
         ]
       }
     },
-    "transformerrootstackArtistArtistOwnerDataResolverFnArtistOwnerDataResolverFnAppSyncFunction5DCA3BC7FunctionId": {
-      "Value": {
-        "Fn::GetAtt": [
-          "ArtistOwnerDataResolverFnArtistOwnerDataResolverFnAppSyncFunctionE7C3B99F",
-          "FunctionId"
-        ]
-      }
-    },
-    "transformerrootstackArtistQuerygetArtistauth0FunctionQuerygetArtistauth0FunctionAppSyncFunction05F25259FunctionId": {
-      "Value": {
-        "Fn::GetAtt": [
-          "QuerygetArtistauth0FunctionQuerygetArtistauth0FunctionAppSyncFunction241174B1",
-          "FunctionId"
-        ]
-      }
-    },
     "transformerrootstackArtistSubscriptiononCreateArtistauth0FunctionSubscriptiononCreateArtistauth0FunctionAppSyncFunctionC391A1EFFunctionId": {
       "Value": {
         "Fn::GetAtt": [
           "SubscriptiononCreateArtistauth0FunctionSubscriptiononCreateArtistauth0FunctionAppSyncFunctionF45E514F",
+          "FunctionId"
+        ]
+      }
+    },
+    "transformerrootstackArtistArtistOwnerDataResolverFnArtistOwnerDataResolverFnAppSyncFunction5DCA3BC7FunctionId": {
+      "Value": {
+        "Fn::GetAtt": [
+          "ArtistOwnerDataResolverFnArtistOwnerDataResolverFnAppSyncFunctionE7C3B99F",
           "FunctionId"
         ]
       }

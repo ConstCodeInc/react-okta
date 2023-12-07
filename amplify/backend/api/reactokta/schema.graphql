@@ -15,6 +15,7 @@ type Artist
       { allow: owner }
       { allow: groups, groups: ["Admin"] }
       { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
     ]
   ) {
   id: ID! @primaryKey
@@ -23,6 +24,10 @@ type Artist
     @hasMany(indexName: "byArtistGenreByArtistId", fields: ["id"])
   talent_label: [ArtistLabel]
     @hasMany(indexName: "byArtistLabelByArtistId", fields: ["id"])
+}
+type ArtistConnection @aws_api_key {
+  getArtistsByGenresAndLabels: [Artist]
+  nextToken: String
 }
 
 type Genre
@@ -40,7 +45,7 @@ type Genre
   talent_genre: [ArtistGenre]
     @hasMany(indexName: "byArtistGenreByGenreId", fields: ["genre"])
 }
-type GenreConnection {
+type GenreConnection @aws_api_key {
   getGenresByName: [Genre]
   nextToken: String
 }
@@ -51,6 +56,7 @@ type ArtistGenre
     rules: [
       { allow: owner }
       { allow: groups, groups: ["Admin"] }
+      { allow: public, operations: [read] }
       { allow: private, operations: [read] }
     ]
   ) {
@@ -75,6 +81,7 @@ type Label
     rules: [
       { allow: owner }
       { allow: groups, groups: ["Admin"] }
+      { allow: public, operations: [read] }
       { allow: private, operations: [read] }
     ]
   ) {
@@ -90,6 +97,7 @@ type ArtistLabel
     rules: [
       { allow: owner }
       { allow: groups, groups: ["Admin"] }
+      { allow: public, operations: [read] }
       { allow: private, operations: [read] }
     ]
   ) {
@@ -108,16 +116,62 @@ type ArtistLabel
   label: Label @belongsTo(fields: ["label_id"])
 }
 
+type LabelConnection @aws_api_key {
+  getLabelsByName: [Label]
+  nextToken: String
+}
+
+type ArtistGenreConnection @aws_api_key {
+  getArtistIdsByGenre: [ArtistGenre]
+  nextToken: String
+}
+
+type ArtistLabelConnection @aws_api_key {
+  getArtistIdsByLabel: [ArtistLabel]
+  nextToken: String
+}
+
+type ArtistIdsConnection @aws_api_key {
+  getArtistsByIds: [Artist]
+  nextToken: String
+}
+
 type Query {
   # getArtistsByGenresAndLabels(genreNames: [String]!, labelNames: [String]!): [Artist] @aws_api_key @aws_cognito_user_pools
   getGenresByName(
     genreNames: [String]!
     limit: Int
     nextToken: String
-  ): GenreConnection
-  getLabelsByName(labelNames: [String]!): [Label]
-  getArtistsByGenresAndLabelsTwo(
+  ): GenreConnection @aws_api_key
+
+  getLabelsByName(
+    labelNames: [String]!
+    limit: Int
+    nextToken: String
+  ): LabelConnection @aws_api_key
+
+  getArtistIdsByGenre(
+    ids: [String]!
+    limit: Int
+    nextToken: String
+  ): ArtistGenreConnection @aws_api_key
+
+  getArtistIdsByLabel(
+    ids: [String]!
+    limit: Int
+    nextToken: String
+  ): ArtistLabelConnection @aws_api_key
+
+  getArtistsByIds(
+    ids: [String]!
+    limit: Int
+    nextToken: String
+  ): ArtistIdsConnection @aws_api_key
+
+  getArtistsByGenresAndLabels(
     genreNames: [String]!
     labelNames: [String]!
-  ): [String] @function(name: "artistProcessor-${env}")
+    limit: Int
+    nextToken: String
+  ): ArtistConnection @function(name: "artistProcessor-${env}") @aws_api_key
 }

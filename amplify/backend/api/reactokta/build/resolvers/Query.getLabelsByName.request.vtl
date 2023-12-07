@@ -1,16 +1,12 @@
 {
-  "version": "2017-02-28",
-  "operation": "Scan",
-  "limit": 100,
-  "nextToken": $util.toJson($context.args.nextToken),
-  "filter": {
-    "expression": "#labelAttr IN (:value1, :value2, :value3)",
-    "expressionNames": {
-      "#labelAttr": "label"
-    },
-    "expressionValues": {
-      ":value1": { "S": "Label1" },
-      ":value2": { "S": "Label2" },
+    "version" : "2017-02-28",
+    "operation" : "Scan",
+    "limit": $util.defaultIfNull($ctx.args.limit, 1000),
+  	"nextToken": $util.toJson($context.args.nextToken),
+    "filter" : {
+        "expression": "contains (:labels, label)",
+        "expressionValues" : {
+            ":labels" : $util.dynamodb.toDynamoDBJson($context.args.labelNames)
+        }
     }
-  }
 }

@@ -6,7 +6,7 @@ type Todo {
   updatedAt: AWSDateTime!
 }
 
-type Artist {
+type Artist @aws_api_key @aws_cognito_user_pools {
   id: ID!
   first_name: String
   talent_genre(filter: ModelArtistGenreFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelArtistGenreConnection
@@ -14,6 +14,11 @@ type Artist {
   createdOn: AWSDateTime!
   updatedOn: AWSDateTime!
   owner: String
+}
+
+type ArtistConnection @aws_api_key {
+  getArtistsByGenresAndLabels: [Artist]
+  nextToken: String
 }
 
 type Genre @aws_api_key @aws_cognito_user_pools {
@@ -25,12 +30,12 @@ type Genre @aws_api_key @aws_cognito_user_pools {
   owner: String
 }
 
-type GenreConnection {
+type GenreConnection @aws_api_key {
   getGenresByName: [Genre]
   nextToken: String
 }
 
-type ArtistGenre {
+type ArtistGenre @aws_api_key @aws_cognito_user_pools {
   id: ID!
   artist_id: ID
   genre_id: ID
@@ -41,7 +46,7 @@ type ArtistGenre {
   owner: String
 }
 
-type Label {
+type Label @aws_api_key @aws_cognito_user_pools {
   id: ID!
   label: ID!
   talent_label(filter: ModelArtistLabelFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelArtistLabelConnection
@@ -50,7 +55,7 @@ type Label {
   owner: String
 }
 
-type ArtistLabel {
+type ArtistLabel @aws_api_key @aws_cognito_user_pools {
   id: ID!
   artist_id: ID
   label_id: ID
@@ -61,28 +66,51 @@ type ArtistLabel {
   owner: String
 }
 
+type LabelConnection @aws_api_key {
+  getLabelsByName: [Label]
+  nextToken: String
+}
+
+type ArtistGenreConnection @aws_api_key {
+  getArtistIdsByGenre: [ArtistGenre]
+  nextToken: String
+}
+
+type ArtistLabelConnection @aws_api_key {
+  getArtistIdsByLabel: [ArtistLabel]
+  nextToken: String
+}
+
+type ArtistIdsConnection @aws_api_key {
+  getArtistsByIds: [Artist]
+  nextToken: String
+}
+
 type Query {
-  getGenresByName(genreNames: [String]!, limit: Int, nextToken: String): GenreConnection
-  getLabelsByName(labelNames: [String]!): [Label]
-  getArtistsByGenresAndLabelsTwo(genreNames: [String]!, labelNames: [String]!): [String]
+  getGenresByName(genreNames: [String]!, limit: Int, nextToken: String): GenreConnection @aws_api_key
+  getLabelsByName(labelNames: [String]!, limit: Int, nextToken: String): LabelConnection @aws_api_key
+  getArtistIdsByGenre(ids: [String]!, limit: Int, nextToken: String): ArtistGenreConnection @aws_api_key
+  getArtistIdsByLabel(ids: [String]!, limit: Int, nextToken: String): ArtistLabelConnection @aws_api_key
+  getArtistsByIds(ids: [String]!, limit: Int, nextToken: String): ArtistIdsConnection @aws_api_key
+  getArtistsByGenresAndLabels(genreNames: [String]!, labelNames: [String]!, limit: Int, nextToken: String): ArtistConnection @aws_api_key
   getTodo(id: ID!): Todo
   listTodos(filter: ModelTodoFilterInput, limit: Int, nextToken: String): ModelTodoConnection
-  getArtist(id: ID!): Artist
-  listArtists(id: ID, filter: ModelArtistFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelArtistConnection
-  getArtistGenre(id: ID!): ArtistGenre
-  listArtistGenres(id: ID, filter: ModelArtistGenreFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelArtistGenreConnection
-  getLabel(id: ID!): Label
-  listLabels(id: ID, filter: ModelLabelFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelLabelConnection
-  getArtistLabel(id: ID!): ArtistLabel
-  listArtistLabels(id: ID, filter: ModelArtistLabelFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelArtistLabelConnection
-  getArtistGenreByArtistId(artist_id: ID!, sortDirection: ModelSortDirection, filter: ModelArtistGenreFilterInput, limit: Int, nextToken: String): ModelArtistGenreConnection
-  getArtistGenreByGenreId(genre_id: ID!, sortDirection: ModelSortDirection, filter: ModelArtistGenreFilterInput, limit: Int, nextToken: String): ModelArtistGenreConnection
-  getLabelByLabel(label: ID!, sortDirection: ModelSortDirection, filter: ModelLabelFilterInput, limit: Int, nextToken: String): ModelLabelConnection
-  getArtistLabelByArtistId(artist_id: ID!, sortDirection: ModelSortDirection, filter: ModelArtistLabelFilterInput, limit: Int, nextToken: String): ModelArtistLabelConnection
-  getArtistLabelByLabelId(label_id: ID!, sortDirection: ModelSortDirection, filter: ModelArtistLabelFilterInput, limit: Int, nextToken: String): ModelArtistLabelConnection
+  getArtist(id: ID!): Artist @aws_api_key @aws_cognito_user_pools
+  listArtists(id: ID, filter: ModelArtistFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelArtistConnection @aws_api_key @aws_cognito_user_pools
   getGenre(id: ID!): Genre @aws_api_key @aws_cognito_user_pools
   listGenres(id: ID, filter: ModelGenreFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelGenreConnection @aws_api_key @aws_cognito_user_pools
   getGenreByGenre(genre: ID!, sortDirection: ModelSortDirection, filter: ModelGenreFilterInput, limit: Int, nextToken: String): ModelGenreConnection @aws_api_key @aws_cognito_user_pools
+  getArtistGenre(id: ID!): ArtistGenre @aws_api_key @aws_cognito_user_pools
+  listArtistGenres(id: ID, filter: ModelArtistGenreFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelArtistGenreConnection @aws_api_key @aws_cognito_user_pools
+  getArtistGenreByArtistId(artist_id: ID!, sortDirection: ModelSortDirection, filter: ModelArtistGenreFilterInput, limit: Int, nextToken: String): ModelArtistGenreConnection @aws_api_key @aws_cognito_user_pools
+  getArtistGenreByGenreId(genre_id: ID!, sortDirection: ModelSortDirection, filter: ModelArtistGenreFilterInput, limit: Int, nextToken: String): ModelArtistGenreConnection @aws_api_key @aws_cognito_user_pools
+  getLabel(id: ID!): Label @aws_api_key @aws_cognito_user_pools
+  listLabels(id: ID, filter: ModelLabelFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelLabelConnection @aws_api_key @aws_cognito_user_pools
+  getLabelByLabel(label: ID!, sortDirection: ModelSortDirection, filter: ModelLabelFilterInput, limit: Int, nextToken: String): ModelLabelConnection @aws_api_key @aws_cognito_user_pools
+  getArtistLabel(id: ID!): ArtistLabel @aws_api_key @aws_cognito_user_pools
+  listArtistLabels(id: ID, filter: ModelArtistLabelFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelArtistLabelConnection @aws_api_key @aws_cognito_user_pools
+  getArtistLabelByArtistId(artist_id: ID!, sortDirection: ModelSortDirection, filter: ModelArtistLabelFilterInput, limit: Int, nextToken: String): ModelArtistLabelConnection @aws_api_key @aws_cognito_user_pools
+  getArtistLabelByLabelId(label_id: ID!, sortDirection: ModelSortDirection, filter: ModelArtistLabelFilterInput, limit: Int, nextToken: String): ModelArtistLabelConnection @aws_api_key @aws_cognito_user_pools
 }
 
 input ModelStringInput {
@@ -301,24 +329,24 @@ type Subscription {
   onCreateTodo(filter: ModelSubscriptionTodoFilterInput): Todo @aws_subscribe(mutations: ["createTodo"])
   onUpdateTodo(filter: ModelSubscriptionTodoFilterInput): Todo @aws_subscribe(mutations: ["updateTodo"])
   onDeleteTodo(filter: ModelSubscriptionTodoFilterInput): Todo @aws_subscribe(mutations: ["deleteTodo"])
-  onCreateArtist(filter: ModelSubscriptionArtistFilterInput, owner: String): Artist @aws_subscribe(mutations: ["createArtist"])
-  onUpdateArtist(filter: ModelSubscriptionArtistFilterInput, owner: String): Artist @aws_subscribe(mutations: ["updateArtist"])
-  onDeleteArtist(filter: ModelSubscriptionArtistFilterInput, owner: String): Artist @aws_subscribe(mutations: ["deleteArtist"])
-  onCreateArtistGenre(filter: ModelSubscriptionArtistGenreFilterInput, owner: String): ArtistGenre @aws_subscribe(mutations: ["createArtistGenre"])
-  onUpdateArtistGenre(filter: ModelSubscriptionArtistGenreFilterInput, owner: String): ArtistGenre @aws_subscribe(mutations: ["updateArtistGenre"])
-  onDeleteArtistGenre(filter: ModelSubscriptionArtistGenreFilterInput, owner: String): ArtistGenre @aws_subscribe(mutations: ["deleteArtistGenre"])
-  onCreateLabel(filter: ModelSubscriptionLabelFilterInput, owner: String): Label @aws_subscribe(mutations: ["createLabel"])
-  onUpdateLabel(filter: ModelSubscriptionLabelFilterInput, owner: String): Label @aws_subscribe(mutations: ["updateLabel"])
-  onDeleteLabel(filter: ModelSubscriptionLabelFilterInput, owner: String): Label @aws_subscribe(mutations: ["deleteLabel"])
-  onCreateArtistLabel(filter: ModelSubscriptionArtistLabelFilterInput, owner: String): ArtistLabel @aws_subscribe(mutations: ["createArtistLabel"])
-  onUpdateArtistLabel(filter: ModelSubscriptionArtistLabelFilterInput, owner: String): ArtistLabel @aws_subscribe(mutations: ["updateArtistLabel"])
-  onDeleteArtistLabel(filter: ModelSubscriptionArtistLabelFilterInput, owner: String): ArtistLabel @aws_subscribe(mutations: ["deleteArtistLabel"])
+  onCreateArtist(filter: ModelSubscriptionArtistFilterInput, owner: String): Artist @aws_subscribe(mutations: ["createArtist"]) @aws_api_key @aws_cognito_user_pools
+  onUpdateArtist(filter: ModelSubscriptionArtistFilterInput, owner: String): Artist @aws_subscribe(mutations: ["updateArtist"]) @aws_api_key @aws_cognito_user_pools
+  onDeleteArtist(filter: ModelSubscriptionArtistFilterInput, owner: String): Artist @aws_subscribe(mutations: ["deleteArtist"]) @aws_api_key @aws_cognito_user_pools
   onCreateGenre(filter: ModelSubscriptionGenreFilterInput, owner: String): Genre @aws_subscribe(mutations: ["createGenre"]) @aws_api_key @aws_cognito_user_pools
   onUpdateGenre(filter: ModelSubscriptionGenreFilterInput, owner: String): Genre @aws_subscribe(mutations: ["updateGenre"]) @aws_api_key @aws_cognito_user_pools
   onDeleteGenre(filter: ModelSubscriptionGenreFilterInput, owner: String): Genre @aws_subscribe(mutations: ["deleteGenre"]) @aws_api_key @aws_cognito_user_pools
+  onCreateArtistGenre(filter: ModelSubscriptionArtistGenreFilterInput, owner: String): ArtistGenre @aws_subscribe(mutations: ["createArtistGenre"]) @aws_api_key @aws_cognito_user_pools
+  onUpdateArtistGenre(filter: ModelSubscriptionArtistGenreFilterInput, owner: String): ArtistGenre @aws_subscribe(mutations: ["updateArtistGenre"]) @aws_api_key @aws_cognito_user_pools
+  onDeleteArtistGenre(filter: ModelSubscriptionArtistGenreFilterInput, owner: String): ArtistGenre @aws_subscribe(mutations: ["deleteArtistGenre"]) @aws_api_key @aws_cognito_user_pools
+  onCreateLabel(filter: ModelSubscriptionLabelFilterInput, owner: String): Label @aws_subscribe(mutations: ["createLabel"]) @aws_api_key @aws_cognito_user_pools
+  onUpdateLabel(filter: ModelSubscriptionLabelFilterInput, owner: String): Label @aws_subscribe(mutations: ["updateLabel"]) @aws_api_key @aws_cognito_user_pools
+  onDeleteLabel(filter: ModelSubscriptionLabelFilterInput, owner: String): Label @aws_subscribe(mutations: ["deleteLabel"]) @aws_api_key @aws_cognito_user_pools
+  onCreateArtistLabel(filter: ModelSubscriptionArtistLabelFilterInput, owner: String): ArtistLabel @aws_subscribe(mutations: ["createArtistLabel"]) @aws_api_key @aws_cognito_user_pools
+  onUpdateArtistLabel(filter: ModelSubscriptionArtistLabelFilterInput, owner: String): ArtistLabel @aws_subscribe(mutations: ["updateArtistLabel"]) @aws_api_key @aws_cognito_user_pools
+  onDeleteArtistLabel(filter: ModelSubscriptionArtistLabelFilterInput, owner: String): ArtistLabel @aws_subscribe(mutations: ["deleteArtistLabel"]) @aws_api_key @aws_cognito_user_pools
 }
 
-type ModelArtistConnection {
+type ModelArtistConnection @aws_api_key @aws_cognito_user_pools {
   items: [Artist]!
   nextToken: String
 }
@@ -446,7 +474,7 @@ input ModelSubscriptionArtistGenreFilterInput {
   or: [ModelSubscriptionArtistGenreFilterInput]
 }
 
-type ModelLabelConnection {
+type ModelLabelConnection @aws_api_key @aws_cognito_user_pools {
   items: [Label]!
   nextToken: String
 }
@@ -487,7 +515,7 @@ input ModelSubscriptionLabelFilterInput {
   or: [ModelSubscriptionLabelFilterInput]
 }
 
-type ModelArtistLabelConnection {
+type ModelArtistLabelConnection @aws_api_key @aws_cognito_user_pools {
   items: [ArtistLabel]!
   nextToken: String
 }
